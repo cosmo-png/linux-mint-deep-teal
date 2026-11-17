@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1440" viewBox="0 0 2560 1440">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090f18"/>
+      <stop offset="0.52" stop-color="#101b27"/>
+      <stop offset="1" stop-color="#07151a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="72%" cy="50%" r="55%">
+      <stop offset="0" stop-color="#17b8a6" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#17b8a6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#73f0d4" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#158f95" stop-opacity=".12"/>
+    </linearGradient>
+    <linearGradient id="ribbon2" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#246c81" stop-opacity=".05"/>
+      <stop offset=".55" stop-color="#31c5b5" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#a4ffe5" stop-opacity=".72"/>
+    </linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="55"/></filter>
+  </defs>
+  <rect width="2560" height="1440" fill="url(#bg)"/>
+  <rect width="2560" height="1440" fill="url(#glow)"/>
+  <ellipse cx="1750" cy="730" rx="760" ry="380" fill="#16ad9e" opacity=".13" filter="url(#blur)"/>
+  <path d="M1240 1440 C1390 1220 1540 1160 1590 950 C1645 730 1520 640 1660 420 C1765 255 1980 145 2265 0 L2560 0 L2560 1440Z" fill="url(#ribbon)" opacity=".62"/>
+  <path d="M1590 1440 C1720 1190 1920 1080 1915 860 C1910 625 1770 560 1875 355 C1960 185 2185 75 2390 0 L2560 0 L2560 1440Z" fill="url(#ribbon2)" opacity=".72"/>
+  <path d="M0 1100 C420 900 680 930 990 1080 C1220 1190 1415 1300 1650 1280" fill="none" stroke="#53d8c3" stroke-opacity=".17" stroke-width="2"/>
+  <path d="M0 1150 C440 960 690 990 995 1130 C1210 1230 1400 1340 1630 1330" fill="none" stroke="#53d8c3" stroke-opacity=".1" stroke-width="2"/>
+  <g fill="#c1fff1" opacity=".45">
+    <circle cx="1660" cy="340" r="2"/><circle cx="1745" cy="295" r="1.5"/>
+    <circle cx="1820" cy="410" r="2"/><circle cx="2050" cy="220" r="1.5"/>
+    <circle cx="2160" cy="310" r="2"/><circle cx="2310" cy="160" r="1.5"/>
+    <circle cx="1920" cy="520" r="1.5"/><circle cx="2380" cy="465" r="2"/>
+  </g>
+  <rect x="64" y="64" width="2432" height="1312" rx="18" fill="none" stroke="#d7fff4" stroke-opacity=".055"/>
+</svg>
