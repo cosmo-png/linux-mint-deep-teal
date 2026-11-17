@@ -70,9 +70,11 @@ Backups are kept in your home directory.
 
 ## Customize
 
-Edit `config/bashrc` for shell changes, `control-center.py` for the control
-center, and `wallpaper/deep-teal.svg` for the wallpaper. Installation copies
-these files into your home directory and leaves the repository unchanged.
+Edit `bashrc` (or `config/bashrc`) for shell changes, `control-center.py` for
+the control center, and `deep-teal.svg` (or `wallpaper/deep-teal.svg`) for the
+wallpaper. The installer accepts either the folder layout or all files at the
+repository root. Installation copies these files into your home directory and
+leaves the repository unchanged.
 
 ## License
 

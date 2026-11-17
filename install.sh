@@ -13,19 +13,24 @@ DESKTOP_ENTRY="$APPLICATIONS_DIR/deep-teal-control-center.desktop"
 BACKUP_SETTINGS="$CONFIG_DIR/desktop-settings.tsv"
 WALLPAPER_DIR="$HOME/.local/share/wallpapers"
 WALLPAPER_TARGET="$WALLPAPER_DIR/deep-teal.svg"
+CONFIG_SOURCE="$ROOT/config/bashrc"
+WALLPAPER_SOURCE="$ROOT/wallpaper/deep-teal.svg"
 BASHRC="$HOME/.bashrc"
 BEGIN_MARKER='# >>> deep-teal-rice >>>'
 END_MARKER='# <<< deep-teal-rice <<<'
 
-[[ -f "$ROOT/config/bashrc" && -f "$ROOT/wallpaper/deep-teal.svg" && -f "$CONTROL_CENTER_SOURCE" ]] || {
+[[ -f "$CONFIG_SOURCE" ]] || CONFIG_SOURCE="$ROOT/bashrc"
+[[ -f "$WALLPAPER_SOURCE" ]] || WALLPAPER_SOURCE="$ROOT/deep-teal.svg"
+
+[[ -f "$CONFIG_SOURCE" && -f "$WALLPAPER_SOURCE" && -f "$CONTROL_CENTER_SOURCE" ]] || {
     printf 'Run this script from the extracted Deep Teal rice folder.\n' >&2
     exit 1
 }
 
 mkdir -p -- "$CONFIG_DIR" "$WALLPAPER_DIR" "$LOCAL_BIN" "$APPLICATIONS_DIR"
-install -m 0644 -- "$ROOT/config/bashrc" "$CONFIG_TARGET"
+install -m 0644 -- "$CONFIG_SOURCE" "$CONFIG_TARGET"
 install -m 0644 -- "$CONTROL_CENTER_SOURCE" "$CONTROL_CENTER_TARGET"
-install -m 0644 -- "$ROOT/wallpaper/deep-teal.svg" "$WALLPAPER_TARGET"
+install -m 0644 -- "$WALLPAPER_SOURCE" "$WALLPAPER_TARGET"
 
 cat > "$LAUNCHER" <<EOF
 #!/usr/bin/env bash
