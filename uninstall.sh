@@ -2,6 +2,8 @@
 set -euo pipefail
 
 CONFIG_DIR="$HOME/.config/deep-teal"
+LAUNCHER="$HOME/.local/bin/deep-teal-control-center"
+DESKTOP_ENTRY="$HOME/.local/share/applications/deep-teal-control-center.desktop"
 BACKUP_SETTINGS="$CONFIG_DIR/desktop-settings.tsv"
 WALLPAPER="$HOME/.local/share/wallpapers/deep-teal.svg"
 BASHRC="$HOME/.bashrc"
@@ -28,6 +30,7 @@ if command -v gsettings >/dev/null 2>&1 && [[ -f "$BACKUP_SETTINGS" ]]; then
 fi
 
 rm -f -- "$WALLPAPER"
-rm -f -- "$CONFIG_DIR/bashrc" "$CONFIG_DIR/desktop-settings.tsv"
+rm -f -- "$CONFIG_DIR/bashrc" "$CONFIG_DIR/control-center.py" "$CONFIG_DIR/desktop-settings.tsv"
 rmdir -- "$CONFIG_DIR" 2>/dev/null || true
+rm -f -- "$LAUNCHER" "$DESKTOP_ENTRY"
 printf 'Deep Teal rice removed. Your .bashrc backups are kept in your home folder.\n'

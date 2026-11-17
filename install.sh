@@ -4,6 +4,12 @@ set -euo pipefail
 ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_DIR="$HOME/.config/deep-teal"
 CONFIG_TARGET="$CONFIG_DIR/bashrc"
+CONTROL_CENTER_SOURCE="$ROOT/control-center.py"
+CONTROL_CENTER_TARGET="$CONFIG_DIR/control-center.py"
+LOCAL_BIN="$HOME/.local/bin"
+LAUNCHER="$LOCAL_BIN/deep-teal-control-center"
+APPLICATIONS_DIR="$HOME/.local/share/applications"
+DESKTOP_ENTRY="$APPLICATIONS_DIR/deep-teal-control-center.desktop"
 BACKUP_SETTINGS="$CONFIG_DIR/desktop-settings.tsv"
 WALLPAPER_DIR="$HOME/.local/share/wallpapers"
 WALLPAPER_TARGET="$WALLPAPER_DIR/deep-teal.svg"
@@ -11,14 +17,34 @@ BASHRC="$HOME/.bashrc"
 BEGIN_MARKER='# >>> deep-teal-rice >>>'
 END_MARKER='# <<< deep-teal-rice <<<'
 
-[[ -f "$ROOT/config/bashrc" && -f "$ROOT/wallpaper/deep-teal.svg" ]] || {
+[[ -f "$ROOT/config/bashrc" && -f "$ROOT/wallpaper/deep-teal.svg" && -f "$CONTROL_CENTER_SOURCE" ]] || {
     printf 'Run this script from the extracted Deep Teal rice folder.\n' >&2
     exit 1
 }
 
-mkdir -p -- "$CONFIG_DIR" "$WALLPAPER_DIR"
+mkdir -p -- "$CONFIG_DIR" "$WALLPAPER_DIR" "$LOCAL_BIN" "$APPLICATIONS_DIR"
 install -m 0644 -- "$ROOT/config/bashrc" "$CONFIG_TARGET"
+install -m 0644 -- "$CONTROL_CENTER_SOURCE" "$CONTROL_CENTER_TARGET"
 install -m 0644 -- "$ROOT/wallpaper/deep-teal.svg" "$WALLPAPER_TARGET"
+
+cat > "$LAUNCHER" <<EOF
+#!/usr/bin/env bash
+exec python3 "$CONTROL_CENTER_TARGET" "\$@"
+EOF
+chmod 0755 -- "$LAUNCHER"
+escaped_app="${CONTROL_CENTER_TARGET//\\/\\\\}"
+escaped_app="${escaped_app//\"/\\\"}"
+cat > "$DESKTOP_ENTRY" <<EOF
+[Desktop Entry]
+Type=Application
+Name=Deep Teal Control Center
+Comment=Adjust screen brightness and audio volume
+Exec=python3 "$escaped_app"
+Icon=preferences-desktop
+Categories=Settings;HardwareSettings;
+Terminal=false
+StartupNotify=true
+EOF
 
 if [[ ! -e "$BASHRC" ]]; then touch -- "$BASHRC"; fi
 if ! grep -Fq -- "$BEGIN_MARKER" "$BASHRC"; then
@@ -59,4 +85,5 @@ fi
 
 printf 'Deep Teal rice installed. Open a new terminal to load the shell prompt.\n'
 printf 'Wallpaper: %s\n' "$WALLPAPER_TARGET"
+printf 'Open Deep Teal Control Center from the Mint application menu.\n'
 printf 'Log out and back in to refresh Cinnamon theme settings.\n'
