@@ -16,7 +16,7 @@ original Quickshell code.
 Replace `YOUR-USERNAME` with the GitHub account that hosts this repository:
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/linux-mint-deep-teal.git
+git clone https://github.com/cosmo-png/linux-mint-deep-teal.git
 cd linux-mint-deep-teal
 chmod +x install.sh
 ./install.sh
