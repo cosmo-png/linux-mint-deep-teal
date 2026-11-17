@@ -2,8 +2,8 @@
 set -euo pipefail
 
 CONFIG_DIR="$HOME/.config/deep-teal"
-LAUNCHER="$HOME/.local/bin/deep-teal-control-center"
-DESKTOP_ENTRY="$HOME/.local/share/applications/deep-teal-control-center.desktop"
+LAUNCHER="$HOME/.local/bin/mint-shadow-settings"
+DESKTOP_ENTRY="$HOME/.local/share/applications/mint-shadow-settings.desktop"
 BACKUP_SETTINGS="$CONFIG_DIR/desktop-settings.tsv"
 WALLPAPER="$HOME/.local/share/wallpapers/deep-teal.svg"
 BASHRC="$HOME/.bashrc"
@@ -33,4 +33,5 @@ rm -f -- "$WALLPAPER"
 rm -f -- "$CONFIG_DIR/bashrc" "$CONFIG_DIR/control-center.py" "$CONFIG_DIR/desktop-settings.tsv"
 rmdir -- "$CONFIG_DIR" 2>/dev/null || true
 rm -f -- "$LAUNCHER" "$DESKTOP_ENTRY"
-printf 'Deep Teal rice removed. Your .bashrc backups are kept in your home folder.\n'
+rm -f -- "$HOME/.local/bin/deep-teal-control-center" "$HOME/.local/share/applications/deep-teal-control-center.desktop"
+printf 'Mint Shadow removed. Your .bashrc backups are kept in your home folder.\n'

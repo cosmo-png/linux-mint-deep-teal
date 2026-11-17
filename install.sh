@@ -7,9 +7,9 @@ CONFIG_TARGET="$CONFIG_DIR/bashrc"
 CONTROL_CENTER_SOURCE="$ROOT/control-center.py"
 CONTROL_CENTER_TARGET="$CONFIG_DIR/control-center.py"
 LOCAL_BIN="$HOME/.local/bin"
-LAUNCHER="$LOCAL_BIN/deep-teal-control-center"
+LAUNCHER="$LOCAL_BIN/mint-shadow-settings"
 APPLICATIONS_DIR="$HOME/.local/share/applications"
-DESKTOP_ENTRY="$APPLICATIONS_DIR/deep-teal-control-center.desktop"
+DESKTOP_ENTRY="$APPLICATIONS_DIR/mint-shadow-settings.desktop"
 BACKUP_SETTINGS="$CONFIG_DIR/desktop-settings.tsv"
 WALLPAPER_DIR="$HOME/.local/share/wallpapers"
 WALLPAPER_TARGET="$WALLPAPER_DIR/deep-teal.svg"
@@ -37,13 +37,14 @@ cat > "$LAUNCHER" <<EOF
 exec python3 "$CONTROL_CENTER_TARGET" "\$@"
 EOF
 chmod 0755 -- "$LAUNCHER"
+rm -f -- "$LOCAL_BIN/deep-teal-control-center" "$APPLICATIONS_DIR/deep-teal-control-center.desktop"
 escaped_app="${CONTROL_CENTER_TARGET//\\/\\\\}"
 escaped_app="${escaped_app//\"/\\\"}"
 cat > "$DESKTOP_ENTRY" <<EOF
 [Desktop Entry]
 Type=Application
-Name=Deep Teal Control Center
-Comment=Adjust screen brightness and audio volume
+Name=Mint Shadow Settings
+Comment=Quick controls and appearance settings for Cinnamon
 Exec=python3 "$escaped_app"
 Icon=preferences-desktop
 Categories=Settings;HardwareSettings;
@@ -88,7 +89,7 @@ else
     printf 'gsettings was not found; apply the wallpaper and theme in System Settings.\n'
 fi
 
-printf 'Deep Teal rice installed. Open a new terminal to load the shell prompt.\n'
+printf 'Mint Shadow installed. Open a new terminal to load the shell prompt.\n'
 printf 'Wallpaper: %s\n' "$WALLPAPER_TARGET"
-printf 'Open Deep Teal Control Center from the Mint application menu.\n'
+printf 'Open Mint Shadow Settings from the Mint application menu.\n'
 printf 'Log out and back in to refresh Cinnamon theme settings.\n'
